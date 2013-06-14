@@ -20,6 +20,8 @@ Note that by default, the selector for columns within the targeted container is 
 
 ## Options and defaults
 
+The following are the available options and default values.
+
 ```javascript
 $("#container").equalHeightColumns({
 	selector: ".column",
