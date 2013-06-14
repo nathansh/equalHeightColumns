@@ -1,0 +1,27 @@
+body {
+	background: #eee;
+	padding: 50px;
+}
+
+#main {
+	background: #fff;
+	width: 75%;
+	padding: 50px;
+	margin: 0 auto;
+}
+
+.column_group {
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
+}
+
+.column {
+	width: 24%;
+	float: left;
+	background: #eee;
+	border: 1px solid #ccc;
+	margin-right: 2%;
+	padding: 0 3%;
+}
