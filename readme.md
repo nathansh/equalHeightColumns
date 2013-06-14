@@ -21,8 +21,10 @@ Note that by default, the selector for columns within the targeted container is 
 ## Options and defaults
 
 ```javascript
-selector: ".column",
-outerHeight: false
+$("#container").equalHeightColumns({
+	selector: ".column",
+	outerHeight: false
+});
 ```
 
 ## outerHeight
