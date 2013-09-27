@@ -25,14 +25,15 @@ The following are the available options and default values.
 ```javascript
 $("#container").equalHeightColumns({
 	selector: ".column",
-	outerHeight: false
+	outerHeight: false,
+	responsive: true
 });
 ```
+
+## responsive
+
+When `responsive` is set to `true` the plugin will re-calculate heights as the browser is resized.
 
 ## outerHeight
 
 You can set this option to `true` if you want the plugin to use `outerHeight()` instead of `height()`.
-
-## Roadmap
-
-This plugin doesn't currently respond to browser resize. This is a feature I'm planning on adding.
