@@ -37,7 +37,7 @@ $("#container").equalHeightColumns('kill');
 
 ## responsive
 
-When `responsive` is set to `true` the plugin will re-calculate heights as the browser is resized.
+When `responsive` is set to `true` the plugin will re-calculate heights as the browser is resized. `responsive` is set to `true` by default.
 
 ## outerHeight
 
