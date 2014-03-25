@@ -29,11 +29,26 @@ $("#container").equalHeightColumns({
 	responsive: true
 });
 ```
+as well as a kill method
 
-## responsive
+```javascript
+$("#container").equalHeightColumns('kill');
+```
+
+## Responsive
 
 When `responsive` is set to `true` the plugin will re-calculate heights as the browser is resized.
 
 ## outerHeight
 
 You can set this option to `true` if you want the plugin to use `outerHeight()` instead of `height()`.
+
+## Kill method
+
+If you're making a responsive site it's likely you'll want to have equal height columns at desktop width but then stack those elements on smaller screens. You'll no longer need or want these elements to have set heights, and the `kill` method is used to clear them. You call the `kill` method by callig `equalHeightColumns('kill')`. For example:
+
+```javascript
+$("#container").equalHeightColumns('kill');
+```
+
+For responsive sites you could use [harvey.js](http://harvesthq.github.io/harvey/) or [enquire.js](http://wicky.nillia.ms/enquire.js/) to initialize the plugin, and then call `kill` in a smaller media query call. If doing this, you should provide support for older browsers without media query by also instantiating `equalHeightColumns()` outside of harvey.js/enquire.js or in a [Modernizr test](http://modernizr.com/docs/#mq).
