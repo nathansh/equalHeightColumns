@@ -16,6 +16,7 @@
 			responsive: true
 		},
 		tallest: 0,
+		settings: '',
 		
 		sizeColumns: function(settings, that) {
 
@@ -43,7 +44,7 @@
 
 		watchResize: function(settings, that) {
 
-			$(window).resize(function(event) {
+			$(window).on('resize.ehc', function(event) {
 
 				// Remove height previously set
 				ehc.tallest = 0;
@@ -54,24 +55,46 @@
 				// Calculate new heights
 				ehc.sizeColumns(settings, that);
 
-			}); // $(window).resize
+			}); // $(window).on(resize.ehc....
 
-		} // watchResize
+		}, // watchResize
+
+		kill: function(that) {
+			
+			// Unbind window resize event handler
+			$(window).off('resize.ehc');
+			
+			// Return elements with heights cleared
+			return $(that).find(settings.selector).each(function() {
+			  $(this).css('height', '');
+			});
+			
+		} // kill
 
 	}; // ehc
 	
 	$.fn.equalHeightColumns = function(options) {
-		
-		// Merge settings
-		var settings = $.extend(ehc.defaults, options);
 
-		// If we're responsive bind resize
-		if ( settings.responsive ) {
-			ehc.watchResize(settings, this);
+		// Check if we're instantiating plugin with options or calling the kill method. Normal stuff frist.
+		if ( options != 'kill' ) {
+
+			// Merge settings
+			settings = $.extend(ehc.defaults, options);
+
+			// If we're responsive bind resize
+			if ( settings.responsive ) {
+				ehc.watchResize(settings, this);
+			}
+
+			// Return main method
+			return ehc.sizeColumns(settings, this);
+
+		} else { // options != kill
+			
+			// Return kill method
+			return ehc.kill(this);
+			
 		}
-		
-		// Return main method
-		return ehc.sizeColumns(settings, this);
 
 	}; // equalHeightColumns
 	
