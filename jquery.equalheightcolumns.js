@@ -1,10 +1,10 @@
 /*!
-* equalHeightColumns 1.0b2
+* equalHeightColumns 1.0b3
 *
 * Written by Nathan Shubert-Harbison, Domain7, in Vancouver, BC, Canada.
 * Released under the WTFPL license - http://sam.zoy.org/wtfpl/
 
-* Date: September 27, 2013
+* Date: March 25, 2014
 */
 
 (function($) {
