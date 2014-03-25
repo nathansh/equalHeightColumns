@@ -43,7 +43,7 @@ When `responsive` is set to `true` the plugin will re-calculate heights as the b
 
 You can set this option to `true` if you want the plugin to use `outerHeight()` instead of `height()`.
 
-## Kill method
+## kill method
 
 If you're making a responsive site it's likely you'll want to have equal height columns at desktop width but then stack those elements on smaller screens. You'll no longer need or want these elements to have set heights, and the `kill` method is used to clear them. You call the `kill` method by callig `equalHeightColumns('kill')`. For example:
 
