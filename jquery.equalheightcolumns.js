@@ -24,7 +24,6 @@
 
 				// Reset tallest to 0
 				ehc.tallest = 0;
-				console.log(ehc.tallest);
 
 				// Find the tallest value
 				$(this).find(settings.selector).each(function(index) {
