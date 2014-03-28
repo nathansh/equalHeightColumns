@@ -62,24 +62,37 @@
 
 		}, // watchResize
 
-		kill: function(that) {
+		methods: {
 			
-			// Unbind window resize event handler
-			$(window).off('resize.ehc');
-			
-			// Return elements with heights cleared
-			return $(that).find(settings.selector).each(function() {
-			  $(this).css('height', '');
-			});
-			
-		} // kill
+			kill: function(that) {
+
+				// Unbind window resize event handler
+				$(window).off('resize.ehc');
+
+				// Return elements with heights cleared
+				return $(that).find(settings.selector).each(function() {
+				  $(this).css('height', '');
+				});
+
+			}, // kill
+
+			refresh: function(that) {
+				
+				ehc.methods.kill(that);
+				ehc.sizeColumns(settings, that);
+				return ehc.watchResize(settings, that);
+				
+			} // refresh
+
+		}
+
 
 	}; // ehc
 	
 	$.fn.equalHeightColumns = function(options) {
 
-		// Check if we're instantiating plugin with options or calling the kill method. Normal stuff frist.
-		if ( options != 'kill' ) {
+		// Check if we're instantiating plugin with options or calling a method. Normal stuff frist.
+		if ( !ehc.methods[options] ) {
 
 			// Merge settings
 			settings = $.extend(ehc.defaults, options);
@@ -94,8 +107,7 @@
 
 		} else { // options != kill
 			
-			// Return kill method
-			return ehc.kill(this);
+			return ehc.methods[options].apply(this, Array.prototype.slice.call(this, settings));
 			
 		}
 
