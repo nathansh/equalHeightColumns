@@ -1,10 +1,10 @@
 /*!
-* equalHeightColumns 1.0b3
+* equalHeightColumns 1.0-rc1
 *
 * Written by Nathan Shubert-Harbison, Domain7, in Vancouver, BC, Canada.
 * Released under the WTFPL license - http://sam.zoy.org/wtfpl/
 
-* Date: March 25, 2014
+* Date: March 28, 2014
 */
 
 (function($) {
@@ -18,7 +18,7 @@
 		tallest: 0,
 		settings: '',
 		
-		sizeColumns: function(settings, that) {
+		sizeColumns: function(that) {
 
 			return $(that).each(function() {
 
@@ -26,10 +26,10 @@
 				ehc.tallest = 0;
 
 				// Find the tallest value
-				$(this).find(settings.selector).each(function(index) {
+				$(this).find(ehc.settings.selector).each(function(index) {
 
 					// whether to use outerHeight or not
-					if ( settings.outerHeight ) {
+					if ( ehc.settings.outerHeight ) {
 						if ( $(this).outerHeight() > ehc.tallest ) {
 							ehc.tallest = $(this).outerHeight();
 						}
@@ -45,18 +45,18 @@
 
 		}, // sizeColumns
 
-		watchResize: function(settings, that) {
+		watchResize: function(that) {
 
 			$(window).on('resize.ehc', function(event) {
 
 				// Remove height previously set
 				ehc.tallest = 0;
-				$(that).find(settings.selector).each(function() {
+				$(that).find(ehc.settings.selector).each(function() {
 					$(this).css('height', '');
 				});
 
 				// Calculate new heights
-				ehc.sizeColumns(settings, that);
+				ehc.sizeColumns(that);
 
 			}); // $(window).on(resize.ehc....
 
@@ -70,7 +70,7 @@
 				$(window).off('resize.ehc');
 
 				// Return elements with heights cleared
-				return $(that).find(settings.selector).each(function() {
+				return $(that).find(ehc.settings.selector).each(function() {
 				  $(this).css('height', '');
 				});
 
@@ -79,13 +79,18 @@
 			refresh: function(that) {
 				
 				ehc.methods.kill(that);
-				ehc.sizeColumns(settings, that);
-				return ehc.watchResize(settings, that);
+				ehc.sizeColumns(that);
+				return ehc.watchResize(that);
 				
-			} // refresh
+			}, // refresh
+
+			debug: function() {
+			
+				return ehc;
+				
+			}
 
 		}
-
 
 	}; // ehc
 	
@@ -95,19 +100,19 @@
 		if ( !ehc.methods[options] ) {
 
 			// Merge settings
-			settings = $.extend(ehc.defaults, options);
+			ehc.settings = $.extend(ehc.defaults, options);
 
 			// If we're responsive bind resize
-			if ( settings.responsive ) {
-				ehc.watchResize(settings, this);
+			if ( ehc.settings.responsive ) {
+				ehc.watchResize(this);
 			}
 
 			// Return main method
-			return ehc.sizeColumns(settings, this);
+			return ehc.sizeColumns(this);
 
 		} else { // options != kill
 			
-			return ehc.methods[options].apply(this, Array.prototype.slice.call(this, settings));
+			return ehc.methods[options].apply(this, Array.prototype.slice.call(this));
 			
 		}
 
