@@ -96,7 +96,7 @@
 	
 	$.fn.equalHeightColumns = function(options) {
 
-		// Check if we're instantiating plugin with options or calling a method. Normal stuff frist.
+		// Check if we're instantiating plugin with options or calling a method. Normal stuff first.
 		if ( !ehc.methods[options] ) {
 
 			// Merge settings

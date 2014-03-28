@@ -43,12 +43,21 @@ When `responsive` is set to `true` the plugin will re-calculate heights as the b
 
 You can set this option to `true` if you want the plugin to use `outerHeight()` instead of `height()`.
 
-## kill method
+## Methods
 
-If you're making a responsive site it's likely you'll want to have equal height columns at desktop width but then stack those elements on smaller screens. You'll no longer need or want these elements to have set heights, and the `kill` method is used to clear them. You call the `kill` method by calling `equalHeightColumns('kill')`. For example:
+Methods can be called like such:
 
 ```javascript
-$("#container").equalHeightColumns('kill');
+$("#container").equalHeightColumns('methodName');
 ```
 
+### kill
+
+If you're making a responsive site it's likely you'll want to have equal height columns at desktop width but then stack those elements on smaller screens. You'll no longer need or want these elements to have set heights, and the `kill` method is used to clear them. You call the `kill` method by calling `equalHeightColumns('kill')`.
+
+
 For responsive sites you could use [harvey.js](http://harvesthq.github.io/harvey/) or [enquire.js](http://wicky.nillia.ms/enquire.js/) to initialize the plugin, and then call `kill` in a smaller media query call. If doing this, you should provide support for older browsers without media query by also instantiating `equalHeightColumns()` outside of harvey.js/enquire.js or in a [Modernizr test](http://modernizr.com/docs/#mq).
+
+### refresh
+
+`refresh` will just recalculate the column heights without fully re-instantiating the plugin. Useful if the content on the page changes, or as a counterpart to `kill` in a responsive JavaScript situation.
