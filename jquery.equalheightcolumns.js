@@ -16,6 +16,7 @@
 			responsive: true
 		},
 		tallest: 0,
+		watching: false,
 		settings: '',
 		
 		sizeColumns: function(that) {
@@ -47,7 +48,11 @@
 
 		watchResize: function(that) {
 
+			ehc.watching = true;
+
 			$(window).on('resize.ehc', function(event) {
+
+				if(!ehc.watching) return;
 
 				// Remove height previously set
 				ehc.tallest = 0;
@@ -65,6 +70,8 @@
 		methods: {
 			
 			kill: function(that) {
+
+				ehc.watching = false;
 
 				// Unbind window resize event handler
 				$(window).off('resize.ehc');
@@ -85,7 +92,7 @@
 			}, // refresh
 
 			debug: function() {
-			
+
 				return ehc;
 				
 			}
