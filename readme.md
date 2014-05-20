@@ -26,7 +26,8 @@ The following are the available options and default values.
 $("#container").equalHeightColumns({
 	selector: ".column",
 	outerHeight: false,
-	responsive: true
+	responsive: true,
+	excludeFullWidth: false
 });
 ```
 as well as a kill method
@@ -42,6 +43,10 @@ When `responsive` is set to `true` the plugin will re-calculate heights as the b
 ## outerHeight
 
 You can set this option to `true` if you want the plugin to use `outerHeight()` instead of `height()`.
+
+## excludeFullWidth
+
+You can set this option to true if you want the plugin to exclude any columns that have the same width as the container in the calculation of the highest column.  Excluded columns will be set to height('').
 
 ## Methods
 

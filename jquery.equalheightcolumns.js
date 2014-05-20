@@ -13,7 +13,8 @@
 		defaults: {
 			selector: ".column",
 			outerHeight: false,
-			responsive: true
+			responsive: true,
+			excludeFullWidth: false
 		},
 		tallest: 0,
 		watching: false,
@@ -23,11 +24,22 @@
 
 			return $(that).each(function() {
 
+				//save width of container
+				var containerWidth = $(this).width();
+				    columns = $(this).find(ehc.settings.selector);
+
 				// Reset tallest to 0
 				ehc.tallest = 0;
 
 				// Find the tallest value
-				$(this).find(ehc.settings.selector).each(function(index) {
+				columns.each(function(index) {
+
+					if( ehc.settings.excludeFullWidth && $(this).width() >= containerWidth ){
+						//remove from columns var
+						columns = columns.not(this);
+						//continue
+						return true;
+					}
 
 					// whether to use outerHeight or not
 					if ( ehc.settings.outerHeight ) {
@@ -40,7 +52,9 @@
 						}
 					}
 
-				}).css('height', ehc.tallest);
+				});
+
+				columns.css('height', ehc.tallest);
 
 			}); // return this.each
 
@@ -100,7 +114,7 @@
 		}
 
 	}; // ehc
-	
+
 	$.fn.equalHeightColumns = function(options) {
 
 		// Check if we're instantiating plugin with options or calling a method. Normal stuff first.
@@ -128,5 +142,5 @@
 		}
 
 	}; // equalHeightColumns
-	
+
 }(jQuery));
