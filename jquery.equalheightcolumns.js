@@ -115,11 +115,15 @@
 			}
 
 			// Return main method
-			return ehc.sizeColumns(this);
+			return this.each(function() {
+				ehc.sizeColumns(this);
+			});
 
 		} else { // options != kill
 			
-			return ehc.methods[options].apply(this, Array.prototype.slice.call(this));
+			return this.each(function() {
+				ehc.methods[options].apply(undefined, [this]);
+			});
 			
 		}
 
