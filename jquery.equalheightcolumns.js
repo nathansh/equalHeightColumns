@@ -54,7 +54,7 @@
 
 				});
 
-				columns.css('height', ehc.tallest);
+				columns.css('height', ehc.tallest).addClass('ehc-sized');
 
 			}); // return this.each
 
