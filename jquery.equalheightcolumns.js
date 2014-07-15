@@ -34,7 +34,7 @@
 				// Find the tallest value
 				columns.each(function(index) {
 
-					if( ehc.settings.excludeFullWidth && $(this).width() >= containerWidth ){
+					if( ehc.settings.excludeFullWidth && $(this).outerWidth() >= containerWidth ){
 						//remove from columns var
 						columns = columns.not(this);
 						//continue
